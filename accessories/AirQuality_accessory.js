@@ -9,8 +9,6 @@ var AirQualityAlarm = 0;
 
 // MQTT Setup
 var mqtt = require('mqtt');
-console.log("HomeKit Smoke Sensor Connecting to MQTT broker...");
-var mqtt = require('mqtt');
 var options = {
   port: 1883,
   host: '127.0.0.1',
