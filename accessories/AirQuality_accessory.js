@@ -25,15 +25,15 @@ client.on('message', function(topic, message) {
   if (topic == 'AirQuality'){
     AirQualityValue = parseFloat(message);
 
-   if ((AirQualityValue > 0) && (AirQualityValue <= 205))
+   if ((AirQualityValue > 0) && (AirQualityValue <= 1000))
 	AirQualityAlarm = 1;
-   if ((AirQualityValue > 205) && (AirQualityValue <= 410))
+   if ((AirQualityValue > 1000) && (AirQualityValue <= 2000))
 	AirQualityAlarm = 2;
-   if ((AirQualityValue > 410) && (AirQualityValue <= 615))
+   if ((AirQualityValue > 2000) && (AirQualityValue <= 5000))
         AirQualityAlarm = 3;
-   if ((AirQualityValue > 615) && (AirQualityValue <= 820))
+   if ((AirQualityValue > 5000) && (AirQualityValue <= 8000))
         AirQualityAlarm = 4;
-   if ((AirQualityValue > 820) && (AirQualityValue <= 1024))
+   if (AirQualityValue > 8000)
         AirQualityAlarm = 5;
    }
 });
@@ -79,6 +79,9 @@ sensor
   AIR_QUALITY_SENSOR.setAirQualityValue();
 
   // update the characteristic value so interested iOS devices can get notified
+  sensor
+    .getService(Service.AirQualitySensor)
+    .setCharacteristic(Characteristic.CarbonDioxideLevel, AirQualityValue);
 
   sensor
     .getService(Service.AirQualitySensor)
